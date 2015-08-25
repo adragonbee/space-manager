@@ -3,66 +3,48 @@ package mapEditor;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import model.RoomModel;
+
 public class Room {
 
-	private int xPos;
-	private int yPos;
-	private int width;
-	private int height;
-
+	private RoomModel roomModel;
 	private Color colour;
+	private boolean isSelected;
 
 	public Room(int xPos, int yPos, int width, int height) {
-		this.xPos = xPos;
-		this.yPos = yPos;
-		this.width = width;
-		this.height = height;
-	}
-	
-	public Boolean containsCoordinates(int x, int y) {
-		if(xPos < x && xPos + width > x && yPos < y && yPos + height > y) {
-			return true;
-		}
-		return false;
+		roomModel = new RoomModel(xPos, yPos, width, height);
 	}
 
-	public void setX(int xPos) {
-		this.xPos = xPos;
-	}
-
-	public int getX() {
-		return xPos;
-	}
-
-	public void setY(int yPos) {
-		this.yPos = yPos;
-	}
-	
 	public void setColour(Color colour) {
 		this.colour = colour;
 	}
 
-	public int getY() {
-		return yPos;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
+	public void setIsSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 
 	public Color getColour() {
-    	return colour;
-    }
+		return colour;
+	}
+
+	public boolean getIsSelected() {
+		return isSelected;
+	}
+	
+	public RoomModel getModel() {
+		return roomModel;
+	}
 
 	public void paintSquare(Graphics g) {
 		g.setColor(colour);
-		g.fillRect(xPos, yPos, width, height);
-		g.setColor(Color.BLACK);
-		g.drawRect(xPos, yPos, width, height);
+		g.fillRect(roomModel.getX(), roomModel.getY(), roomModel.getWidth(), roomModel.getHeight());
+		if (isSelected) {
+			g.setColor(Color.BLUE);
+		}
+		else {
+			g.setColor(Color.BLACK);
+		}
+		g.drawRect(roomModel.getX(), roomModel.getY(), roomModel.getWidth(), roomModel.getHeight());
 	}
 
 }

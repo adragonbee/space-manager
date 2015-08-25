@@ -4,7 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
-import mapEditor.Map;
+import mapEditor.MapWindow;
+import mapEditor.SidePanel;
 
 public class MainWindow extends JFrame {
 
@@ -17,7 +18,7 @@ public class MainWindow extends JFrame {
 		super(name);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		Map map = new Map();
+		MapWindow map = new MapWindow();
 		add(map, BorderLayout.CENTER);
 		pack();
 	}
