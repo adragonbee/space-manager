@@ -17,6 +17,8 @@ public class MapWindow extends JPanel implements MouseMotionListener, MouseListe
 	private Room selectedRoom;
 	private SidePanel sidePanel;
 	private MapPanel mapPanel;
+	private int diffX;
+	private int diffY;
 
 	private static final long serialVersionUID = -4761389846458857635L;
 
@@ -45,7 +47,7 @@ public class MapWindow extends JPanel implements MouseMotionListener, MouseListe
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		moveRoom(e.getX(), e.getY());
+		moveRoom(e.getX() - diffX, e.getY() - diffY);
 	}
 
 	@Override
@@ -54,6 +56,8 @@ public class MapWindow extends JPanel implements MouseMotionListener, MouseListe
 		if(selectedRoom != null){
 			DeselectAllRooms();
 			selectedRoom.setIsSelected(true);
+			diffX = e.getX() - selectedRoom.getModel().getX();
+			diffY = e.getY() - selectedRoom.getModel().getY();
 		}
 		repaint();
 	}

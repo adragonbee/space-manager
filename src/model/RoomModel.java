@@ -1,11 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+
 public class RoomModel {
 
 	private int xPos;
 	private int yPos;
 	private int width;
 	private int height;
+	private ArrayList<DoorModel> doors;
 	
 	public RoomModel(int xPos, int yPos, int width, int height) {
 		this.xPos = xPos;
